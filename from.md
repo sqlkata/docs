@@ -48,7 +48,7 @@ You can rewrite the same query by using the `Lambda` function overload
 
 ```cs
 new Query().From(q => 
-    new Query("Posts").Where("Date", "<", fewMonthsAgo).As("old")
+    q.From("Posts").Where("Date", "<", fewMonthsAgo).As("old")
 ).OrderByDesc("Date");
 ```
 
