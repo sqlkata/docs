@@ -1,5 +1,5 @@
 # Common Table Expression
-A common table expression (CTE) can be thought of as a temporary result set, it have some advantages over the sub query approach.
+A common table expression (CTE) can be thought of as a temporary result set, it has some advantages over the sub query approach.
 
 In Sql, usually CTE is represented as a `with` clause.
 

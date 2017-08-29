@@ -2,16 +2,16 @@
 
 ## Introduction
 
-SqlKata query builder helps you to deal with SQL queries in an elegant and predictable way.
+SqlKata query builder helps you deal with SQL queries in an elegant and predictable way.
 
-Wether you have an extensive `Linq` background or an experienced `SQL` developer, you will feel at home with SqlKata, thanks to it's clean and predictable naming.
+Whether you have an extensive `LINQ` background or you are an experienced `SQL` developer, you will feel you are at home with SqlKata, thanks to it's clean and predictable naming.
 
 Written in C#, the language we all love, you can check the source code on [SqlKata on Github](https://github.com/sqlkata/querybuilder)
 
 
 It uses parameter binding technique to protect your application against SQL injection attacks. There is no need to clean strings being passed as bindings.
 
-In addition to protection against SQL injection attacks, this technique speed up your query execution by letting the SQL engine to cache and reuses the same query plan even if the parameters are changed.
+In addition to protection against SQL injection attacks, this technique speeds up your query execution by letting the SQL engine caches and reuses the same query plan even if the parameters are changed.
 
 ```cs
 var query = new Query("Posts")
@@ -22,7 +22,7 @@ var query = new Query("Posts")
     
     .When(havingCommentsOnly, q => {
 
-        // this will executed only if `havingCommentsOnly` is true
+        // this will be executed only if `havingCommentsOnly` is true
         q.WhereExists(q => q.From("Comments").WhereColumns("PostId", "Posts.Id"))
     })
 
@@ -83,7 +83,7 @@ List<object> bindings = result.Bindings
 ### Sql vs RawSql vs ToString
 
 #### result.Sql
-This property return the compiled SQL string with indexed parameters of the form `@p0`, `@p1` etc ...
+This property returns the compiled SQL string with indexed parameters of the form `@p0`, `@p1` etc ...
 
 Actually you should pass this to the database engine
 

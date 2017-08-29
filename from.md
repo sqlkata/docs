@@ -1,7 +1,7 @@
 # From
 
 ## From a Table or View
-The `Query` constructor take an optional parameter to set the `from` clause
+The `Query` constructor takes an optional parameter to set the `from` clause
 
 ```cs
 new Query("Posts");

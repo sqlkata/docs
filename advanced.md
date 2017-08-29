@@ -4,7 +4,7 @@
 
 SqlKata allows you to tune your queries against specific engines by using the `ForXXX` methods.
 
-this is helpful when you want to apply some native functions, that are available in some vendors and not in others.
+This is helpful when you want to apply some native functions, that are available in some vendors and not in others.
 
 ### Casting Example
 
@@ -91,7 +91,7 @@ Off course you can use any method you want inside these lambdas
 
 ## Clone
 
-`Query`s instance are mutable, this mean that when modifying the copied query will also change the original query.
+`Query`s instances are mutable, this means that modifying the copied query will also change the original query.
 
 To make a real clone of the query instance, you should use the `Clone` method.
 

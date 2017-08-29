@@ -132,11 +132,11 @@ In PostgreSql
 SELECT * FROM "Posts" WHERE EXISTS (SELECT 1 FROM "Comments" WHERE "Id" = "Posts"."Id" LIMIT 1)
 ```
 
-SqlKata try to optimize the `EXISTS` query by disregarding the selected columns and limiting the result to `1` in order to provide a consistent behavior across all database engines.
+SqlKata tries to optimize the `EXISTS` query by disregarding the selected columns and limiting the result to `1` in order to provide a consistent behavior across all database engines.
 
 
 ## Where Raw
-The `WhereRaw` methods allows you to write anything not supported by the methods above, so it will give you the maximum flexibility.
+The `WhereRaw` methods allow you to write anything not supported by the methods above, so it will give you the maximum flexibility.
 
 
 ```cs
