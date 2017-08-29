@@ -80,7 +80,7 @@ SELECT * FROM [Posts] WHERE ([IsPublished] = False OR [CommentsCount] = 0) AND N
 Use this method when you want to compare two columns together.
 
 ```cs
-new Query("Posts").Where("Upvotes", ">", "Downvotes");
+new Query("Posts").WhereColumns("Upvotes", ">", "Downvotes");
 ```
 
 ```sql
