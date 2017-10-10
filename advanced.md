@@ -27,7 +27,7 @@ In PostgreSql
 SELECT "Id", "Title", "Date"::date FROM "Posts"
 ```
 
-In Mysql, the statements are totally ignored
+In this example, Mysql isn't affected
 
 ```sql
 SELECT `Id`, `Title` FROM `Posts`
@@ -39,12 +39,13 @@ Another example is to generate a date series between two given dates, you can us
 
 
 ```cs
-var from = DateTime.UtcNow.AddDays(-5).ToString("yyyy-MM-dd");
-var to = DateTime.UtcNow.ToString("yyyy-MM-dd");
+var now = DateTime.UtcNow;
+var format = "yyyy-MM-dd";
+
+DateTime from = now.AddDays(-5).ToString(format), 
+         now.ToString(format);
 
 var rangeQuery = new Query()
-
-
 
 .ForPostgres(q => 
     

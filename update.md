@@ -1,5 +1,6 @@
 # Insert, Update and Delete
 
+> **Note:** Currently, the following clauses: `using`, `order by`, `group by`, `having`, `join`, `limit`, `offset` and `distinct` are totally ignored for the **Insert**, **Update** and **Delete** statements.
 
 ## Insert
 ```cs
