@@ -32,7 +32,7 @@ var latestPosts = new Query("Posts").OrderByDesc("Date").Limit(10).Offset(5);
 
 In Sql Server
 ```sql
-SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY [Date] DESC) AS [row_num] FROM [Posts]) WHERE [row_num] BETWEEN 6 AND 15
+SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY [Date] DESC) AS [row_num] FROM [Posts]) AS [subquery] WHERE [row_num] BETWEEN 6 AND 15
 ```
 
 In PostgreSql

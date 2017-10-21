@@ -42,13 +42,13 @@ SqlKata is hosted on Nuget, run the following commands from your terminal to inc
 
 Using dotnet core cli
 ```
-dotnet add package SqlKata -v 1.0.0-beta-353
+dotnet add package SqlKata -v 1.0.0-beta-354
 ```
 
 Legacy dotnet applications
 
 ```
-Install-Package SqlKata -Version 1.0.0-beta-353
+Install-Package SqlKata -Version 1.0.0-beta-354
 ```
 
 
@@ -94,7 +94,7 @@ Actually you should pass this to the database engine
 This is the same as the `Sql` except that the parameters are not indexed, and a `?` is used as placeholder
 
 #### result.ToString()
-This property should be used only for debuging and demo purposes, in this method the parameters get replaced with the placeholder just to make it easy for you if you want to log or debug the queries.
+This property should be used only for debugging and demo purposes, in this method the parameters get replaced with the placeholder just to make it easy for you if you want to log or debug the queries.
 
 >**Warning:** Don't use `ToString()` to execute your queries
 
