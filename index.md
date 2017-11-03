@@ -42,13 +42,13 @@ SqlKata is hosted on Nuget, run the following commands from your terminal to inc
 
 Using dotnet core cli
 ```
-dotnet add package SqlKata -v 1.0.0-beta-354
+dotnet add package SqlKata -v 1.0.0-beta-355
 ```
 
 Legacy dotnet applications
 
 ```
-Install-Package SqlKata -Version 1.0.0-beta-354
+Install-Package SqlKata -Version 1.0.0-beta-355
 ```
 
 
