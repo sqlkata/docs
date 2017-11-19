@@ -38,17 +38,19 @@ var query = new Query("Posts")
 
 
 ## Installation
-SqlKata is hosted on Nuget, run the following commands from your terminal to include it in your project.
+SqlKata is supported on both `net framework` and `dotnet standard`.
+
+Run the following commands from your terminal to include it in your project.
 
 Using dotnet core cli
 ```
-dotnet add package SqlKata -v 1.0.0-beta-355
+dotnet add package SqlKata -v 1.0.0-beta-357
 ```
 
 Legacy dotnet applications
 
 ```
-Install-Package SqlKata -Version 1.0.0-beta-355
+Install-Package SqlKata -Version 1.0.0-beta-357
 ```
 
 
