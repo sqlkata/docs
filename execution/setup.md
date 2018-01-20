@@ -4,7 +4,7 @@ In order to execute the queries, you have to create instances of `XQuery`, that 
 
 ## XQuery class
 
-`XQuery` constructor requires two mandatory parameter, the Database connection (of type `IDbConnection`) instance and the `Compiler` instance.
+`XQuery` constructor requires two mandatory parameters, the Database connection (of type `IDbConnection`) instance and the `Compiler` instance.
 
 > **Note: ** `XQuery` extends the `Query` class and support all methods supported by the later
 
