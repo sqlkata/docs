@@ -17,7 +17,7 @@ SELECT [Id], [Title], [CreatedAt] AS [Date] FROM [Posts]
 Select from a sub query
 
 ```cs
-var countQuery = new Query("Comments").WhereColumns("Comments.PostId", "Posts.Id").Count();
+var countQuery = new Query("Comments").WhereColumns("Comments.PostId", "Posts.Id").AsCount();
 
 new Query("Posts").Select("Id").Select(countQuery, "CommentsCount");
 ```
@@ -47,7 +47,7 @@ new Query("Posts").Select("Id").SelectRaw("count(1) over(partition by {AuthorId}
 
 Now `AuthorId` and `PostsByAuthor` get wrapped with the compiler identifiers, this is helpful especially for case sensitive engine like PostgreSql.
 
-In SqlServer 
+In SqlServer
 
 ```sql
 SELECT [Id], count(1) over(partition by [AuthorId]) as [PostsByAuthor] FROM [Posts]

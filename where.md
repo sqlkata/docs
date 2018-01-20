@@ -14,7 +14,7 @@ new Query().Where("Id", 10);
 
 // since = is the default
 new Query().Where("Id", "=", 10);
-``` 
+```
 
 ```cs
 new Query("Posts").WhereNot("IsPublished", true).Where("Score", ">", 10);
@@ -49,7 +49,7 @@ SELECT * FROM [Posts] WHERE [Year] = 2017 AND [CategoryId] = 198 AND [IsPublishe
 You can pass a `Query` instance to compare a column against a sub query.
 
 ```cs
-var average = new Query("Posts").Average("score");
+var average = new Query("Posts").AsAverage("score");
 
 new Query("Posts").Where("Score", ">", average);
 ```
@@ -65,10 +65,10 @@ SELECT * FROM [Posts] WHERE [Score] > (SELECT AVG([score]) AS [avg] FROM [Posts]
 To group your conditions, just wrap them inside another `Where` block.
 
 ```cs
-new Query("Posts").Where(q => 
+new Query("Posts").Where(q =>
     q.Where("IsPublished", false).OrWhere("CommentsCount", 0)
-).WhereNot(q => 
-    q.WhereNull("AuthorId").OrWhereNull("Title") 
+).WhereNot(q =>
+    q.WhereNull("AuthorId").OrWhereNull("Title")
 );
 ```
 
@@ -116,7 +116,7 @@ SELECT * FROM [Posts] WHERE [AuthorId] NOT IN (SELECT [Id] FROM [Authors] WHERE 
 To select all posts that have at least one comment.
 
 ```cs
-new Query("Posts").WhereExists(q => 
+new Query("Posts").WhereExists(q =>
     q.From("Comments").WhereColumns("Comments.PostId", "=", "Posts.Id")
 );
 ```

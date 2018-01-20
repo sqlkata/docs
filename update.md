@@ -11,7 +11,7 @@ var data = new Dictionary<string, object> {
 };
 
 var query = new Query("Posts")
-    .Insert(data);
+    .AsInsert(data);
 ```
 
 ```sql
@@ -25,7 +25,7 @@ var data = new Dictionary<string, object> {
     {"AuthorId", 10}
 };
 
-var query = new Query("Posts").WhereNull("AuthorId").Update(data);
+var query = new Query("Posts").WhereNull("AuthorId").AsUpdate(data);
 ```
 
 ```sql
@@ -35,7 +35,7 @@ UPDATE [Posts] SET [AuthorId] = 10 WHERE [AuthorId] IS NULL
 ## Delete
 
 ```cs
-var query = new Query("Posts").Where("Date", ">", DateTime.UtcNow.AddDays(-30)).Delete();
+var query = new Query("Posts").Where("Date", ">", DateTime.UtcNow.AddDays(-30)).AsDelete();
 ```
 
 ```sql

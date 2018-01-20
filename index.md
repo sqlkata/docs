@@ -19,10 +19,9 @@ bool havingCommentsOnly = Config.Get('OnlyWithComments');
 
 var query = new Query("Posts")
     .Where("Likes", ">", 10)
-    .Where("Lang", "en")
-    .OrWhere("Lang", "fr")
+    .WhereIn("Lang", new [] {"en", "fr"})
     .WhereNotNull("AuthorId")
-    
+
     .When(havingCommentsOnly, q => {
 
         // this will be executed only if `havingCommentsOnly` is true
@@ -33,7 +32,7 @@ var query = new Query("Posts")
     .ForPostgres(q => q.WhereRaw("(current_date - 30::integer) <= UpdatedAt"))
     .ForSqlServer(q => q.WhereRaw("DATEADD(DAY, -30, GETDATE()) <= UpdatedAt"))
 
-    .Count();
+    .Select("Posts.Id", "Posts.Title");
 ```
 
 
@@ -79,7 +78,7 @@ SELECT * FROM [MyTable]
 ```
 
 ### Parameter bindings
-To get the list of bindings 
+To get the list of bindings
 
 ```cs
 List<object> bindings = result.Bindings
