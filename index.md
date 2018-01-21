@@ -41,17 +41,10 @@ SqlKata is supported on both `net framework` and `dotnet standard`.
 
 Run the following commands from your terminal to include it in your project.
 
-Using dotnet core cli
+Using dotnet cli
 ```
-dotnet add package SqlKata -v 1.0.0-beta-357
+dotnet add package SqlKata --version 1.0.0-beta-411
 ```
-
-Legacy dotnet applications
-
-```
-Install-Package SqlKata -Version 1.0.0-beta-357
-```
-
 
 ## Getting started
 
