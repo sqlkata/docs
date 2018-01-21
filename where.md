@@ -67,13 +67,11 @@ To group your conditions, just wrap them inside another `Where` block.
 ```cs
 new Query("Posts").Where(q =>
     q.Where("IsPublished", false).OrWhere("CommentsCount", 0)
-).WhereNot(q =>
-    q.WhereNull("AuthorId").OrWhereNull("Title")
 );
 ```
 
 ```sql
-SELECT * FROM [Posts] WHERE ([IsPublished] = False OR [CommentsCount] = 0) AND NOT ([AuthorId] IS NULL OR [Title] IS NULL)
+SELECT * FROM [Posts] WHERE ([IsPublished] = False OR [CommentsCount] = 0)
 ```
 
 ## Comparing two columns

@@ -76,13 +76,13 @@ Sometimes you may want to retrieve data in chunks to prevent loading the whole t
 This is useful in situations where you have thousands of records.
 
 ```cs
-query.Chunk(100, (users, page) => {
+query.Chunk(100, (rows, page) => {
 
     Console.WriteLine($"Fetching page: {page}");
 
-    foreach(var user in users)
+    foreach(var row in rows)
     {
-        // do something with user
+        // do something with row
     }
 
 });
@@ -91,15 +91,19 @@ query.Chunk(100, (users, page) => {
 To stop retrieving chunks simply return false from the invoked action
 
 ```cs
-query.Chunk(100, (users, page) => {
+query.Chunk(100, (rows, page) => {
 
-    // process users
+    // process rows
 
     if(page == 3) {
 
+        // stop retrieving other chunks
         return false;
 
     }
+
+    // return true to continue
+    return true;
 
 });
 ```
