@@ -36,7 +36,7 @@ var connection = new MySqlConnection(
 
 var db = new QueryFactory(connection, new MySqlCompiler());
 
-// From now on, you can use the `factory.Create()` method
+// From now on, you can use the `db.Query()` method
 var users = db.Query().From("Users").Get();
 
 // or more simpler
