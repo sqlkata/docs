@@ -88,7 +88,7 @@ query.Chunk(100, (rows, page) => {
 });
 ```
 
-To stop retrieving chunks simply return false from the invoked action
+To stop retrieving chunks simply use the `Chunk(int chunkSize, Func<IEnumerable<dynamic>, int, bool> func)` overload and return false from the invoked action
 
 ```cs
 query.Chunk(100, (rows, page) => {

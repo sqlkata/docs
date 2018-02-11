@@ -37,13 +37,21 @@ var query = new Query("Posts")
 
 
 ## Installation
-SqlKata is supported on both `net framework` and `dotnet standard`.
+SqlKata is supported on both `net` and `netstandard`.
+
+Until we reach the stable version, the NuGet Packages will be hosted on MyGet.
 
 Run the following commands from your terminal to include it in your project.
 
 Using dotnet cli
 ```
-dotnet add package SqlKata --version 1.0.0-beta-411
+dotnet add package SqlKata --version 1.0.0-beta-419 --source https://www.myget.org/F/sqlkata/api/v3/index.json
+```
+
+Or from the Package Manager Console
+
+```
+Install-Package SqlKata -Version 1.0.0-beta-419 -Source https://www.myget.org/F/sqlkata/api/v3/index.json
 ```
 
 ## Getting started
