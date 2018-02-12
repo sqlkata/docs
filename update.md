@@ -18,6 +18,19 @@ var query = new Query("Posts")
 INSERT INTO [Book] ([Name], [CreatedAt], [Author]) VALUES (?, ?, ?)
 ```
 
+### Insert from Query
+
+You can also insert records for the result of another Select Query.
+
+```cs
+var cols = new [] { "Id", "Name", "Address" };
+new Query("ActiveUsers").AsInsert(cols, new Query("Users").Where("Active", 1));
+```
+
+```sql
+INSERT INTO [ActiveUsers] ([Id], [Name], [Address]) SELECT * FROM [Users] WHERE [Active] = 1
+```
+
 ## Update
 
 ```cs
