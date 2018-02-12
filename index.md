@@ -43,16 +43,21 @@ Until we reach the stable version, the NuGet Packages will be hosted on MyGet.
 
 ### Add SqlKata MyGet feed to your project
 
-One way to do so is by adding the following to your `NuGet.Config`.
+One way to do so is by adding the MyGet feed to your `NuGet.Config`.
+
+```xml
+<add key="sqlkata" value="https://www.myget.org/F/sqlkata/api/v3/index.json" />
+```
 
 > **Note: ** if this file is not found, create it next to your `.csproj` file
 
+The final file should be similar to this
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
-    <add key="sqlkata" value="https://www.myget.org/F/sqlkata/api/v3/index.json" />
     <add key="NuGet" value="https://api.nuget.org/v3/index.json" />
+    <add key="sqlkata" value="https://www.myget.org/F/sqlkata/api/v3/index.json" />
   </packageSources>
 </configuration>
 ```
