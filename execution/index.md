@@ -7,14 +7,14 @@ SqlKata provide an easy way to execute your queries, by using the famous package
 To be able to execute queries, you have to install the `SqlKata.Execution` package using the dotnet cli
 
 ```sh
-dotnet add package SqlKata.Execution --version 1.0.0-beta-419 --source https://www.myget.org/F/sqlkata/api/v3/index.json
+dotnet add package SqlKata.Execution --version 1.0.0-beta-421
 
 ```
 
 Or from the Package Manager Console
 
 ```
-Install-Package SqlKata.Execution -Version 1.0.0-beta-419 -Source https://www.myget.org/F/sqlkata/api/v3/index.json
+Install-Package SqlKata.Execution -Version 1.0.0-beta-421
 ```
 
 ## Installing Database Providers

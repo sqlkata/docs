@@ -41,17 +41,35 @@ SqlKata is supported on both `net` and `netstandard`.
 
 Until we reach the stable version, the NuGet Packages will be hosted on MyGet.
 
+### Add SqlKata MyGet feed to your project
+
+One way to do so is by adding the following to your `NuGet.Config`.
+
+> **Note: ** if this file is not found, create it next to your `.csproj` file
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="sqlkata" value="https://www.myget.org/F/sqlkata/api/v3/index.json" />
+    <add key="NuGet" value="https://api.nuget.org/v3/index.json" />
+  </packageSources>
+</configuration>
+```
+
+### Restore packages
+
 Run the following commands from your terminal to include it in your project.
 
 Using dotnet cli
 ```
-dotnet add package SqlKata --version 1.0.0-beta-419 --source https://www.myget.org/F/sqlkata/api/v3/index.json
+dotnet add package SqlKata --version 1.0.0-beta-421
 ```
 
 Or from the Package Manager Console
 
 ```
-Install-Package SqlKata -Version 1.0.0-beta-419 -Source https://www.myget.org/F/sqlkata/api/v3/index.json
+Install-Package SqlKata -Version 1.0.0-beta-421
 ```
 
 ## Getting started
