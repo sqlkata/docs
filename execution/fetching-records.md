@@ -1,5 +1,33 @@
 # Fetching Records
 
+SqlKata provides the following methods to help executing your queries:
+
+ - `Get()`
+ - `Get<T>()`
+ - `GetAsync()`
+ - `GetAsync<T>()`
+
+ - `First()`
+ - `First<T>()`
+ - `FirstAsync()`
+ - `FirstAsync<T>()`
+
+ - `FirstOrDefault()`
+ - `FirstOrDefault<T>()`
+ - `FirstOrDefaultAsync()`
+ - `FirstOrDefaultAsync<T>()`
+
+ - `Paginate()`
+ - `Paginate<T>()`
+ - `PaginateAsync()`
+ - `PaginateAsync<T>()`
+
+ - `Chunk()`
+ - `Chunk<T>()`
+ - `ChunkAsync()`
+ - `ChunkAsync<T>()`
+
+
 ## Retrieving Records
 
 By default calling the `Get` method returns an `IEnumerable<dynamic>`, giving you the top flexibility
@@ -7,15 +35,13 @@ By default calling the `Get` method returns an `IEnumerable<dynamic>`, giving yo
 ```cs
 var db = new QueryFactory(connection, new SqlServerCompiler());
 
-// users is of type IEnumerable<dynamic>
-var users = db.Query("Users").Get();
+IEnumerable<dynamic> users = db.Query("Users").Get();
 ```
 
 However you can use the generic overload when you prefer strong types instead
 
 ```cs
-// users is of type `IEnumerable<User>`
-var users = db.Query("Users").Get<User>();
+IEnumerable<User> users = db.Query("Users").Get<User>();
 ```
 
 ## Getting One Record

@@ -68,13 +68,13 @@ Run the following commands from your terminal to include it in your project.
 
 Using dotnet cli
 ```
-dotnet add package SqlKata --version 1.0.0-beta-421
+dotnet add package SqlKata --version 1.0.0-beta-422
 ```
 
 Or from the Package Manager Console
 
 ```
-Install-Package SqlKata -Version 1.0.0-beta-421
+Install-Package SqlKata -Version 1.0.0-beta-422
 ```
 
 ## Getting started
@@ -88,24 +88,17 @@ using SqlKata.Compilers;
 // Create an instance of SQLServer
 var compiler = new SqlServerCompiler();
 
-var query = new Query("MyTable");
+var query = new Query("Users").Where("Id", 1).Where("Status", "Active");
 
-var result = compiler.Compile(query);
+SqlResult result = compiler.Compile(query);
 
-// print the compiled SQL
-Console.WriteLine(result.Sql)
+string sql = result.Sql; // SELECT * FROM [Users] WHERE [Id] = ? AND [Status] = ?
+List<object> bindings = result.Bindings; // [ 1, "Active" ]
 ```
 
 Sql output
 ```sql
-SELECT * FROM [MyTable]
-```
-
-### Parameter bindings
-To get the list of bindings
-
-```cs
-List<object> bindings = result.Bindings
+SELECT * FROM [Users] WHERE [Id] = ? AND [Status] = ?
 ```
 
 ### Sql vs RawSql vs ToString
