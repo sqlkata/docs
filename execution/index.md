@@ -32,7 +32,7 @@ dotnet add package System.Data.SqlClient
 For Postgre Sql install [Npgsql](http://www.npgsql.org/) package
 
 ```sh
-dotnet add package dotnet add package Npgsql
+dotnet add package Npgsql
 ```
 
 ### MySql
