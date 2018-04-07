@@ -68,13 +68,13 @@ Run the following commands from your terminal to include it in your project.
 
 Using dotnet cli
 ```
-dotnet add package SqlKata --version 1.0.0-beta-429
+dotnet add package SqlKata --version 1.0.0-beta-455
 ```
 
 Or from the Package Manager Console
 
 ```
-Install-Package SqlKata -Version 1.0.0-beta-429
+Install-Package SqlKata -Version 1.0.0-beta-455
 ```
 
 ## Getting started

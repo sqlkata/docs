@@ -18,6 +18,26 @@ var query = new Query("Posts")
 INSERT INTO [Book] ([Name], [CreatedAt], [Author]) VALUES (?, ?, ?)
 ```
 
+### Insert Many
+you can use the insert many overload to insert multiple records
+
+```cs
+var cols = new [] {"Name", "Price"};
+
+var data = new [] {
+    new object[] { "A", 1000 },
+    new object[] { "B", 2000 },
+    new object[] { "C", 3000 },
+};
+
+var query = new Query("Products")
+    .AsInsert(cols, data);
+```
+
+```sql
+INSERT INTO [Products] ([Name], [Price]) VALUES ("A", 1000), ("B", 2000), ("C", 3000)
+```
+
 ### Insert from Query
 
 You can also insert records for the result of another Select Query.

@@ -42,6 +42,22 @@ int affected = db.Query("Books").Insert(book);
 
 ```
 
+## Insert Multiple Record
+
+```cs
+
+var cols = new [] {"Name", "Price"};
+
+var data = new [] {
+    new object[] { "A", 1000 },
+    new object[] { "B", 2000 },
+    new object[] { "C", 3000 },
+};
+
+db.Query("Products").Insert(cols, data);
+
+```
+
 ## Insert From Existing Query
 
 ```cs
