@@ -11,8 +11,8 @@ This is helpful when you want to apply some native functions, that are available
 ```cs
 var query = new Query("Posts")
     .Select("Id", "Title")
-    .ForPostgres(q => q.SelectRaw("{Date}::date"))
-    .ForSqlServer(q => q.SelectRaw("CAST({Date} as DATE)"));
+    .ForPostgres(q => q.SelectRaw("[Date]::date"))
+    .ForSqlServer(q => q.SelectRaw("CAST([Date] as DATE)"));
 ```
 
 In Sql Server
@@ -42,20 +42,20 @@ Another example is to generate a date series between two given dates, you can us
 var now = DateTime.UtcNow;
 var format = "yyyy-MM-dd";
 
-DateTime from = now.AddDays(-5).ToString(format), 
+DateTime from = now.AddDays(-5).ToString(format),
          now.ToString(format);
 
 var rangeQuery = new Query()
 
-.ForPostgres(q => 
-    
+.ForPostgres(q =>
+
     // everything written here is available to the Postgre Compiler only
     q.FromRaw("generate_series ( ?::timestamp, ?::timestamp, '1 day'::interval) dates", new[] { from, to })
     .SelectRaw("dates::date as date")
 )
 
-.ForSqlServer(q => 
-    
+.ForSqlServer(q =>
+
     // everything written here is available to the SqlServer Compiler only
     q.WithRaw("range", @"SELECT CAST(? AS DATETIME) 'date'
         UNION ALL

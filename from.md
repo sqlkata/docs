@@ -5,7 +5,7 @@ The `Query` constructor takes an optional parameter to set the `from` clause
 
 ```cs
 new Query("Posts");
-``` 
+```
 
 Or you can use the `From` method to set it
 
@@ -47,7 +47,7 @@ SELECT * FROM (SELECT * FROM [Posts] WHERE [Date] < '2017-06-01 6:31:26') AS [ol
 You can rewrite the same query by using the `Lambda` function overload
 
 ```cs
-new Query().From(q => 
+new Query().From(q =>
     q.From("Posts").Where("Date", "<", fewMonthsAgo).As("old")
 ).OrderByDesc("Date");
 ```
@@ -67,4 +67,4 @@ for example in SqlServer you can use the `TABLESAMPLE` to get a 10% sample of th
 SELECT * FROM Comments TABLESAMPLE SYSTEM (10 PERCENT)
 ```
 
-> **Note:** Remember you can use the `{}` to wrap identifiers word in your string
+> **Note:** Remember you can use the `[]` to wrap identifiers word in your string

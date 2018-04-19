@@ -42,11 +42,11 @@ var mobiles = new Query("Laptops").CombineRaw("union all select * from OldLaptop
 SELECT * FROM [Laptops] union all select * from OldLaptops
 ```
 
-Off course you can use the table identifier characters `{` and `}` to instruct SqlKata to wrap the tables/columns keywords.
+Off course you can use the table identifier characters `[` and `]` to instruct SqlKata to wrap the tables/columns keywords.
 
 
 ```cs
-var mobiles = new Query("Laptops").CombineRaw("union all select * from {OldLaptops}");
+var mobiles = new Query("Laptops").CombineRaw("union all select * from [OldLaptops]");
 ```
 
 ```sql

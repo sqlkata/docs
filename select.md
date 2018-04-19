@@ -38,11 +38,11 @@ SELECT [Id], count(1) over(partition by AuthorId) as PostsByAuthor FROM [Posts]
 ```
 
 ## Identify columns and tables inside Raw
-You can wrap your identifier inside `{` and `}` so they get recognized by SqlKata as an identifier, so we can rewrite the same example above as
+You can wrap your identifier inside `[` and `]` so they get recognized by SqlKata as an identifier, so we can rewrite the same example above as
 
 
 ```cs
-new Query("Posts").Select("Id").SelectRaw("count(1) over(partition by {AuthorId}) as {PostsByAuthor}")
+new Query("Posts").Select("Id").SelectRaw("count(1) over(partition by [AuthorId]) as [PostsByAuthor]")
 ```
 
 Now `AuthorId` and `PostsByAuthor` get wrapped with the compiler identifiers, this is helpful especially for case sensitive engine like PostgreSql.

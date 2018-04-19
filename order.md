@@ -15,7 +15,7 @@ SELECT * FROM [Comments] ORDER BY [Date], [Name] DESC
 ## OrderByRaw
 
 ```cs
-var query = new Query("Comments").OrderByRaw("{Likes} DESC NULLS LAST")
+var query = new Query("Comments").OrderByRaw("[Likes] DESC NULLS LAST")
 ```
 
 In PostgreSql

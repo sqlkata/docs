@@ -145,10 +145,10 @@ new Query("Posts").WhereRaw("lower(Title) = ?", "sql");
 SELECT * FROM [Posts] WHERE lower(Title) = 'sql'
 ```
 
-Sometimes it's useful to wrap your table/columns by the engine identifier, this is helpful when the database is case sensitive like in PostgreSql, to do so just wrap your string with `{` and `}` and SqlKata will put the correspondent identifiers.
+Sometimes it's useful to wrap your table/columns by the engine identifier, this is helpful when the database is case sensitive like in PostgreSql, to do so just wrap your string with `[` and `]` and SqlKata will put the correspondent identifiers.
 
 ```cs
-new Query("Posts").WhereRaw("lower({Title}) = ?", "sql");
+new Query("Posts").WhereRaw("lower([Title]) = ?", "sql");
 ```
 
 In Sql Server
