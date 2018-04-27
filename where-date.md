@@ -1,9 +1,9 @@
 Date Operations
 =================
 
-SqlKata Query Builder provides `WhereDate`, `WhereTime`, and `WhereDatePart` methods to deal with date columns.
+SqlKata Query Builder provides `WhereDate`, `WhereTime` and `WhereDatePart` methods to deal with date columns.
 
-this is useful if you want to query against a date part of the column.
+this is useful if you want to query against a specific date part of the column.
 
 ##WhereDate
 let you query against the **date part** of a datetime column
@@ -62,7 +62,7 @@ new Query("Posts").WhereDatePart("day", "CreatedAt", 1).WhereDatePart("month", "
 
 In Sql Server
 ```sql
-SELECT * FROM [Posts] WHERE DATEPART('DAY', [CreatedAt]) = 1 AND DATEPART('MONTH', [CreatedAt]) = 2
+SELECT * FROM [Posts] WHERE DATEPART('DAY', [CreatedAt]) = 1 AND DATEPART(MONTH, [CreatedAt]) = 2
 ```
 
 In Postgres
