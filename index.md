@@ -2,12 +2,9 @@
 
 ## Introduction
 
-SqlKata query builder helps you deal with SQL queries in an elegant and predictable way.
-
-Whether you have an extensive `LINQ` background or you are an experienced `SQL` developer, you will feel you are at home with SqlKata, thanks to it's clean and predictable naming.
+An elegant Query Builder and Executor helps you deal with SQL queries in an elegant and predictable way.
 
 Written in C#, the language we all love, you can check the source code on [SqlKata on Github](https://github.com/sqlkata/querybuilder)
-
 
 It uses parameter binding technique to protect your application against SQL injection attacks. There is no need to clean strings being passed as bindings.
 
@@ -17,22 +14,29 @@ In addition to protection against SQL injection attacks, this technique speeds u
 
 bool havingCommentsOnly = Config.Get('OnlyWithComments');
 
-var query = new Query("Posts")
+IEnumerable<Post> posts = await db.Query("Posts")
     .Where("Likes", ">", 10)
     .WhereIn("Lang", new [] {"en", "fr"})
     .WhereNotNull("AuthorId")
-
     .When(havingCommentsOnly, q => {
 
         // this will be executed only if `havingCommentsOnly` is true
         q.WhereExists(q => q.From("Comments").WhereColumns("PostId", "Posts.Id"))
     })
+    .OrderByDesc("Date")
+    .Select("Id", "Title")
+    .GetAsync<Post>();
+```
 
-    .ForMySql(q => q.WhereRaw("DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= UpdatedAt"))
-    .ForPostgres(q => q.WhereRaw("(current_date - 30::integer) <= UpdatedAt"))
-    .ForSqlServer(q => q.WhereRaw("DATEADD(DAY, -30, GETDATE()) <= UpdatedAt"))
-
-    .Select("Posts.Id", "Posts.Title");
+```sql
+SELECT [Id], [Title] FROM [Posts]
+WHERE [Likes] > @p1
+  AND [Lang] IN ( @p2, @p3 )
+  AND [AuthorId] IS NOT NULL
+  AND EXISTS (
+    SELECT TOP 1 FROM [Comments] WHERE [PostId] = [Posts].[Id]
+  )
+ORDER BY [Date] DESC
 ```
 
 
