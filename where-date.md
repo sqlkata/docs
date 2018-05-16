@@ -62,7 +62,7 @@ new Query("Posts").WhereDatePart("day", "CreatedAt", 1).WhereDatePart("month", "
 
 In Sql Server
 ```sql
-SELECT * FROM [Posts] WHERE DATEPART('DAY', [CreatedAt]) = 1 AND DATEPART(MONTH, [CreatedAt]) = 2
+SELECT * FROM [Posts] WHERE DATEPART(DAY, [CreatedAt]) = 1 AND DATEPART(MONTH, [CreatedAt]) = 2
 ```
 
 In Postgres
