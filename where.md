@@ -12,7 +12,7 @@ The second parameter of the where method is optional and defaulting to `=` if om
 ```cs
 new Query().Where("Id", 10);
 
-// since = is the default
+// since `=` is the default operator
 new Query().Where("Id", "=", 10);
 ```
 
@@ -28,16 +28,14 @@ SELECT * FROM [Posts] WHERE NOT ([IsPublished] = True) AND [Score] > 10
 
 
 ## Multiple fields
-If you want to filter your query against multiple fields, pass a `Dictionary<string, object>`.
+If you want to filter your query against multiple fields, pass an `object` that represents col/values.
 
 ```cs
-var constraints = new Dictionary<string, object> {
-    { "Year", 2017 },
-    { "CategoryId", 198 },
-    { "IsPublished", true }
-};
-
-var query = new Query("Posts").Where(constraints);
+var query = new Query("Posts").Where(new {
+    Year = 2017 ,
+    CategoryId = 198 ,
+    IsPublished = true,
+});
 ```
 
 ```sql

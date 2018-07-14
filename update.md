@@ -4,18 +4,15 @@
 
 ## Insert
 ```cs
-var data = new Dictionary<string, object> {
-    {"Title", "Toyota Kata"},
-    {"CreatedAt", "August 4, 2009"},
-    {"Author", "Mike Rother"}
-};
-
-var query = new Query("Posts")
-    .AsInsert(data);
+var query = new Query("Posts").AsInsert(new {
+    Title = "Toyota Kata",
+    CreatedAt = new DateTime(2009, 8, 4),
+    Author = "Mike Rother"
+});
 ```
 
 ```sql
-INSERT INTO [Book] ([Name], [CreatedAt], [Author]) VALUES (?, ?, ?)
+INSERT INTO [Book] ([Name], [CreatedAt], [Author]) VALUES ('Toyota Kata', '2009-08-04 00:00:00', 'Mike Rother')
 ```
 
 ### Insert Many
@@ -54,11 +51,9 @@ INSERT INTO [ActiveUsers] ([Id], [Name], [Address]) SELECT * FROM [Users] WHERE 
 ## Update
 
 ```cs
-var data = new Dictionary<string, object> {
-    {"AuthorId", 10}
-};
-
-var query = new Query("Posts").WhereNull("AuthorId").AsUpdate(data);
+var query = new Query("Posts").WhereNull("AuthorId").AsUpdate(new {
+    AuthorId = 10
+});
 ```
 
 ```sql
