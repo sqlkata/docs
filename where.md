@@ -17,11 +17,11 @@ new Query().Where("Id", "=", 10);
 ```
 
 ```cs
-new Query("Posts").WhereNot("IsPublished", true).Where("Score", ">", 10);
+new Query("Posts").WhereFalse("IsPublished").Where("Score", ">", 10);
 ```
 
 ```sql
-SELECT * FROM [Posts] WHERE NOT ([IsPublished] = True) AND [Score] > 10
+SELECT * FROM [Posts] WHERE [IsPublished] = 0 AND [Score] > 10
 ```
 
 > **Note:** The same apply for `WhereNot`, `OrWhere` and `OrWhereNot`.
@@ -64,12 +64,12 @@ To group your conditions, just wrap them inside another `Where` block.
 
 ```cs
 new Query("Posts").Where(q =>
-    q.Where("IsPublished", false).OrWhere("CommentsCount", 0)
+    q.WhereFalse("IsPublished").OrWhere("CommentsCount", 0)
 );
 ```
 
 ```sql
-SELECT * FROM [Posts] WHERE ([IsPublished] = False OR [CommentsCount] = 0)
+SELECT * FROM [Posts] WHERE ([IsPublished] = 0 OR [CommentsCount] = 0)
 ```
 
 ## Comparing two columns

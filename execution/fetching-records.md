@@ -3,34 +3,14 @@
 SqlKata provides the following methods to help executing your queries:
 
  - `Get()`
- - `Get<T>()`
- - `GetAsync()`
- - `GetAsync<T>()`
-
  - `First()`
- - `First<T>()`
- - `FirstAsync()`
- - `FirstAsync<T>()`
-
  - `FirstOrDefault()`
- - `FirstOrDefault<T>()`
- - `FirstOrDefaultAsync()`
- - `FirstOrDefaultAsync<T>()`
-
  - `Paginate()`
- - `Paginate<T>()`
- - `PaginateAsync()`
- - `PaginateAsync<T>()`
-
  - `Chunk()`
- - `Chunk<T>()`
- - `ChunkAsync()`
- - `ChunkAsync<T>()`
-
 
 ## Retrieving Records
 
-By default calling the `Get` method returns an `IEnumerable<dynamic>`, giving you the top flexibility
+By default calling the `Get` method returns an `IEnumerable<dynamic>`, giving you the max flexibility
 
 ```cs
 var db = new QueryFactory(connection, new SqlServerCompiler());
@@ -132,4 +112,17 @@ query.Chunk(100, (rows, page) => {
     return true;
 
 });
+```
+
+## Execute Raw Statements
+If you want to execute free raw statements, use the `QueryFactory.Select` and `QueryFactory.Statement` methods.
+
+```cs
+var users = db.Select("exec sp_get_users_by_date @date", new {date = DateTime.UtcNow});
+```
+
+`QueryFactory.Statement` allows you to execute arbitrary statements like `truncate table`, `create database`, etc ...
+
+```cs
+db.Statement("truncate table Users");
 ```
