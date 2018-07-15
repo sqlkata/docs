@@ -21,10 +21,10 @@ IEnumerable<Post> posts = await db.Query("Posts")
 ```
 
 ```sql
-SELECT [Id], [Title] FROM [Posts]
-WHERE [Likes] > @p1
-AND [Lang] IN ( @p2, @p3 )
-AND [AuthorId] IS NOT NULL
+SELECT [Id], [Title] FROM [Posts] WHERE
+  [Likes] > @p1 AND
+  [Lang] IN ( @p2, @p3 ) AND
+  [AuthorId] IS NOT NULL
 ORDER BY [Date] DESC
 ```
 

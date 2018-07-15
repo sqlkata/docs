@@ -13,22 +13,36 @@ Theoretically the output of different compilers should be similar, this is true 
 new Query("Posts").Limit(10).Offset(20);
 ```
 
-### SqlServer
-
+Sql Server
 ```sql
-SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY (SELECT 0)) AS [row_num] FROM [Posts]) WHERE [row_num] BETWEEN 21 AND 30
+SELECT * FROM [Posts] ORDER BY (SELECT 0) OFFSET 20 ROWS FETCH NEXT 10 ROWS ONLY
 ```
 
-### MySql
+Sql Server &lt; 2012
+```sql
+SELECT * FROM (
+    SELECT *, ROW_NUMBER() OVER (ORDER BY (SELECT 0)) AS [row_num] FROM [Posts]
+) WHERE [row_num] BETWEEN 21 AND 30
+```
 
+MySql
 ```sql
 SELECT * FROM `Posts` LIMIT 10 OFFSET 20
 ```
 
-### PostgreSql
+PostgreSql
 
 ```sql
 SELECT * FROM "Posts" LIMIT 10 OFFSET 20
 ```
 
 In this documentation, we will display the queries compiled by the SqlServer Compiler only, except for the queries where the output is not the same.
+
+## Supporting Legacy SqlServer &lt; 2012
+Set the **UseLegacyPagination** flag to true if you want to target legacy Sql Server.
+
+```cs
+var compiler = new SqlServerCompiler {
+    UseLegacyPagination = true
+}
+```

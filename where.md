@@ -42,14 +42,27 @@ var query = new Query("Posts").Where(new {
 SELECT * FROM [Posts] WHERE [Year] = 2017 AND [CategoryId] = 198 AND [IsPublished] = True
 ```
 
+## WhereNull, WhereTrue and WhereFalse
+To filter against `NULL`, boolean `true` and boolean `false` values.
+
+```cs
+db.Query("Users").WhereFalse("IsActive").OrWhereNull("LastActivityDate");
+```
+
+```sql
+SELECT * FROM [Users] WHERE [IsActive] = 0 AND [LastActivityDate] IS NULL
+```
+
+> **Note:** the above methods will put the values literally in the generated sql and do not use parameter bindings techniques.
+
 ## Sub Query
 
 You can pass a `Query` instance to compare a column against a sub query.
 
 ```cs
-var average = new Query("Posts").AsAverage("score");
+var averageQuery = new Query("Posts").AsAverage("score");
 
-new Query("Posts").Where("Score", ">", average);
+new Query("Posts").Where("Score", ">", averageQuery);
 ```
 
 ```sql
