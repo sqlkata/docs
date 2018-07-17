@@ -32,6 +32,11 @@ var latestPosts = new Query("Posts").OrderByDesc("Date").Limit(10).Offset(5);
 
 In Sql Server
 ```sql
+SELECT * FROM [Posts] ORDER BY [Date] DESC OFFSET 5 ROWS FETCH NEXT 10 ROWS
+```
+
+In Sql Server (Legacy)
+```sql
 SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY [Date] DESC) AS [row_num] FROM [Posts]) AS [subquery] WHERE [row_num] BETWEEN 6 AND 15
 ```
 
@@ -45,7 +50,7 @@ In MySql
 SELECT * FROM `Posts` ORDER BY `Date` DESC LIMIT 10 OFFSET 5
 ```
 
-## Data pagination 
+## Data pagination
 
 You can use the `ForPage` method to easily paginate your data.
 

@@ -36,18 +36,19 @@ Run the following commands from your terminal to include it in your project.
 
 Using dotnet cli
 ```
-dotnet add package SqlKata --version 1.0.0
-dotnet add package SqlKata.Execution --version 1.0.0
+dotnet add package SqlKata
+dotnet add package SqlKata.Execution
 ```
 
 Or from the Package Manager Console
 
 ```
-Install-Package SqlKata -Version 1.0.0
-Install-Package SqlKata.Execution -Version 1.0.0
+Install-Package SqlKata -Version
+Install-Package SqlKata.Execution
 ```
 
 > **Note:** The `SqlKata.Execution` is only needed if you want add the execution support
+> **Note:** The `SqlKata.Execution` works only on `netfx451` and above, or `netstandard1.3` and above
 
 ## Getting started
 
