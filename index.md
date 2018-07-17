@@ -43,11 +43,13 @@ dotnet add package SqlKata.Execution
 Or from the Package Manager Console
 
 ```
-Install-Package SqlKata -Version
+Install-Package SqlKata
 Install-Package SqlKata.Execution
 ```
 
 > **Note:** The `SqlKata.Execution` is only needed if you want add the execution support
+
+
 > **Note:** The `SqlKata.Execution` works only on `netfx451` and above, or `netstandard1.3` and above
 
 ## Getting started

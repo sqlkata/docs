@@ -18,7 +18,7 @@ Sql Server
 SELECT * FROM [Posts] ORDER BY (SELECT 0) OFFSET 20 ROWS FETCH NEXT 10 ROWS ONLY
 ```
 
-Sql Server &lt; 2012
+Legacy Sql Server (&lt; 2012)
 ```sql
 SELECT * FROM (
     SELECT *, ROW_NUMBER() OVER (ORDER BY (SELECT 0)) AS [row_num] FROM [Posts]

@@ -35,7 +35,7 @@ In Sql Server
 SELECT * FROM [Posts] ORDER BY [Date] DESC OFFSET 5 ROWS FETCH NEXT 10 ROWS
 ```
 
-In Sql Server (Legacy)
+In Legacy Sql Server (&lt; 2012)
 ```sql
 SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY [Date] DESC) AS [row_num] FROM [Posts]) AS [subquery] WHERE [row_num] BETWEEN 6 AND 15
 ```
