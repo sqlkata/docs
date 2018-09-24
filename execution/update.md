@@ -4,6 +4,7 @@ SqlKata provides the following methods to help with updating/inserting/deleting 
 
  - `Update()`
  - `Insert()`
+ - `InsertGetId()`
  - `Delete()`
 
 ```cs
