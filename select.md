@@ -64,3 +64,25 @@ In MySql
 ```sql
 SELECT `Id`, count(1) over(partition by `AuthorId`) as `PostsByAuthor` FROM `Posts`
 ```
+
+## Expanding Columns Expression (Braces Expansions)
+Starting **v1.1.2**, you can use the Braces Expansions feature, to select multiple columns at the same time. This will allow you to write the same query in a more compact way.
+
+```cs
+new Query("Users")
+    .Join("Profiles", "Profiles.UserId", "Users.Id")
+    .Select("Users.{Id, Name, LastName}", "Profiles.{GithubUrl, Website}")
+```
+
+Same as writing
+
+```cs
+new Query("Users")
+    .Join("Profiles", "Profiles.UserId", "Users.Id")
+    .Select("Users.Id", "Users.Name", "Users.LastName", "Profiles.GithubUrl", "Profiles.Website")
+```
+
+```sql
+SELECT [Users].[Id], [Users].[Name], [Users].[LastName], [Profiles].[GithubUrl], [Profile].[Website] FROM [Users]
+    JOIN [Profiles] ON [Profiles.UserId] = [Users].[Id]
+```
