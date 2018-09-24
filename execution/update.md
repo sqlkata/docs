@@ -30,6 +30,20 @@ int affected = db.Query("Books").Insert(new {
 
 ```
 
+## Insert One Record and get the Inserted Id
+
+In version 1.1.0 we've added the ability to get the inserted id, in the database.
+
+```cs
+var id = db.Query("Books").InsertGetId<int>(new {
+    Title = "Introduction to Dart",
+    Price = 0,
+    Status = "active"
+});
+```
+
+> **Note:** Currently this method is able to get the **Id** for single insert statements. Multiple records is not supported yet.
+
 ## Insert Multiple Record
 
 ```cs

@@ -15,6 +15,10 @@ var query = new Query("Posts").AsInsert(new {
 INSERT INTO [Book] ([Name], [CreatedAt], [Author]) VALUES ('Toyota Kata', '2009-08-04 00:00:00', 'Mike Rother')
 ```
 
+
+> **Note: ** While executing the query you can get the inserted **id** using the `InsertGetId()` method
+
+
 ### Insert Many
 you can use the insert many overload to insert multiple records
 
