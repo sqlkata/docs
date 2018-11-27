@@ -36,45 +36,89 @@ var book = db.Query("Books").Where("Id", 1).First<Book>();
 
 ## Data Pagination
 
-SqlKata make it easy to paginate your data, just call the `Paginate` method instead of `Get`.
+To paginate your data, use the `Paginate(pageNumber, perPage?)` method instead of `Get`.
 
 the `Paginate` method accept two parameters, the `page` number (1 based) and an optional `perPage` that defaults to 25, and return an instance of type `PaginationResult`.
 
-`PaginationResult` implements the `Enumerable` interface so you can safely iterate over the returned data.
+The `PaginationResult` expose the `Each` property that implements the `Enumerable` interface so you can safely iterate over the returned data.
 
 
 ```cs
 // users is of type `PaginationResult`
 var users = query.Paginate(1, 10);
 
-foreach(var user in users)
+foreach(var user in users.Each)
 {
     Console.WriteLine($"Id: {user.Id}, Name: {user.Name}");
 }
 ```
 
 ### Next and Previous
-You can get the next or previous page by calling the `NextQuery` and `PreviousQuery` respectively.
 
-```cs
-
-var page1 = query.Paginate(1, 10);
-
-// same as query.Paginate(2, 10)
-var page2Query = page1.NextQuery();
-
-```
-
-To get the data directly you can call the `Next` and `Previous` methods respectively.
+You can call the `Next` and `Previous` methods to get the Next/Previous page respectively.
 
 ```cs
 
 var page1 = query.Paginate(1);
 
-// page2 is of type IEnumerable<dynamic>
-var page2 = page1.Next();
+foreach(var item in page1.Each)
+{
+    // print items in the first page
+}
+
+var page2 = page1.Next(); // same as query.Paginate(2)
+
+foreach(var item in page2.Each)
+{
+    // print items in the 2nd page
+}
 
 ```
+
+### Next and Previous Queries
+
+Sometimes you may need to access the underlying queries for the next and previous methods. Use the `NextQuery` and `PreviousQuery` respectively in this case.
+
+Accessing the queries can sometime more beneficial if you want more control, i.e. adding additional constraint.
+
+```cs
+
+var currentPage = query.Paginate(1, 10);
+
+foreach(var item in currentPage.Each)
+{
+    // print all books in the first page
+}
+
+var books_2 = currentPage.NextQuery().WhereTrue("IsPublished").Get();
+
+foreach(var item in books_2.Each)
+{
+    // print published books only in page 2
+}
+
+```
+
+### Looping over all records example
+
+This example may not be used in real cases, use the **Chunk** method instead if you need such functionality
+
+```cs
+var currentPage = db.Query("Books").OrderBy("Date").Paginate(1);
+
+while(currentPage.HasNext)
+{
+    Console.WriteLine($"Looping over the page: {currentPage.Page}");
+
+    foreach(var book in currentPage.Each)
+    {
+        // process book
+    }
+
+    currentPage = currentPage.Next();
+}
+```
+
 
 ## Data Chunks
 Sometimes you may want to retrieve data in chunks to prevent loading the whole table one time in memory, for this you can use the `Chunk` method.
