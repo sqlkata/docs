@@ -90,9 +90,9 @@ foreach(var item in currentPage.Each)
     // print all books in the first page
 }
 
-var books_2 = currentPage.NextQuery().WhereTrue("IsPublished").Get();
+var publishedInPage2 = currentPage.NextQuery().WhereTrue("IsPublished").Get();
 
-foreach(var item in books_2.Each)
+foreach(var item in publishedInPage2.Each)
 {
     // print published books only in page 2
 }
