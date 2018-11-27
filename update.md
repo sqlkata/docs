@@ -4,7 +4,7 @@
 
 ## Insert
 ```cs
-var query = new Query("Posts").AsInsert(new {
+var query = new Query("Books").AsInsert(new {
     Title = "Toyota Kata",
     CreatedAt = new DateTime(2009, 8, 4),
     Author = "Mike Rother"
@@ -12,7 +12,7 @@ var query = new Query("Posts").AsInsert(new {
 ```
 
 ```sql
-INSERT INTO [Book] ([Name], [CreatedAt], [Author]) VALUES ('Toyota Kata', '2009-08-04 00:00:00', 'Mike Rother')
+INSERT INTO [Books] ([Name], [CreatedAt], [Author]) VALUES ('Toyota Kata', '2009-08-04 00:00:00', 'Mike Rother')
 ```
 
 

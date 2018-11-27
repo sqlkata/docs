@@ -1,4 +1,12 @@
 # SqlKata
+<div class="tags-container" style="margin-top: -80px">
+  <span class="tag">Sql Server</span>
+  <span class="tag">SQLite</span>
+  <span class="tag">PostgreSql</span>
+  <span class="tag">MySql</span>
+  <span class="tag">Oracle</span>
+  <span class="tag">Firebird</span>
+</div>
 
 ## Introduction
 
@@ -54,9 +62,36 @@ Install-Package SqlKata.Execution
 
 ## Getting started
 
+```cs
+using SqlKata;
+using SqlKata.Execution;
+using System.Data.SqlClient; // Sql Server Connection Namespace
+
+// Setup the connection and compiler
+var connection = new SqlConnection("Data Source=MyDb;User Id=User;Password=TopSecret");
+var compiler = new SqlServerCompiler();
+
+var db = new QueryFactory(connection, compiler);
+
+// You can register the QueryFactory in the IoC container
+
+var user = db.Query("Users").Where("Id", 1).Where("Status", "Active").First();
+
+```
+
+Sql output
+```sql
+SELECT TOP(1) * FROM [Users] WHERE [Id] = @p0 AND [Status] = @p1
+```
+where `@p0`, `@p1` are equivalent to `1`, `"Active"` respectively.
+
+## Compile only example
+
+If you don't need to execute your queries, you can use SqlKata to build and compile your query to SQL string with an array of bindings. Off course no connection instance needed here.
+
 The simplest way to get started is to create a new instance of the `Query` object by passing the table name in it.
 
-```cs
+```csharp
 using SqlKata;
 using SqlKata.Compilers;
 
@@ -71,13 +106,11 @@ string sql = result.Sql;
 List<object> bindings = result.Bindings; // [ 1, "Active" ]
 ```
 
-Sql output
+It will generate the following SQL string
+
 ```sql
 SELECT * FROM [Users] WHERE [Id] = @p0 AND [Status] = @p1
 ```
-where `@p0`, `@p1` are equivalent to `1`, `"Active"` respectively.
-
-To execute your queries, use the result of `SqlResult.Sql` and the `SqlResult.Bindings` or `SqlResult.NamedBindings`
 
 >**Warning:** Don't ever use `SqlResult.ToString()` to execute your queries.
 

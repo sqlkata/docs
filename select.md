@@ -11,7 +11,7 @@ new Query("Posts").Select("Id", "Title", "CreatedAt as Date");
 SELECT [Id], [Title], [CreatedAt] AS [Date] FROM [Posts]
 ```
 
-> **Note:** As in the above example to alias a column you should use the **as** syntax
+> **Note:** You can use the **as** keyword to alias a column in the select list
 
 ## Sub query
 Select from a sub query

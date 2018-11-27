@@ -4,7 +4,7 @@ Compilers are the component responsible to transform a **Query** instance to a S
 
 
 ## Supported compilers
-Currently, SqlKata query builder supports natively the following compilers **SqlServer**, **MySql** and **PostgreSql**.
+Currently, SqlKata query builder supports natively the following compilers **Sql Server**, **SQLite**,  **MySql**, **PostgreSql**, **Oracle** and **Firebird**.
 
 ## Some noticeable difference
 Theoretically the output of different compilers should be similar, this is true for the 80% of the cases, however in some edge cases the output can be very different, for instance take a look how the `Limit` and `Offset` clause get compiled in each compiler
