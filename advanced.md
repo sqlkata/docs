@@ -1,10 +1,58 @@
 # Advanced methods
 
+## Conditional Statements
+
+Sometimes you need to do some actions only when certain conditions are met, in these cases you can use the `When(condition, whenTrue, whenFalse = null)` method.
+
+```cs
+var query = db.Query("Transactions");
+
+query.When(
+    amount > 0,
+    q => q.Select("Debit as Amount"),
+    q => q.Select("Credit as Amount"),
+)
+
+```
+
+is the same as
+
+```cs
+var query = db.Query("Transactions");
+
+if(amount > 0)
+{
+    query.Select("Debit as Amount");
+}
+else
+{
+    query.Select("Credit as Amount");
+}
+```
+
+Off course you can use to build any part of the query.
+
+## Clone
+
+`Query`s instances are mutable, this means that modifying the copied query will also change the original query.
+
+To make a real clone of the query instance, you should use the `Clone` method.
+
+```cs
+var baseQuery = new Query().Select("Id", "Name").Limit(10).OrderBy("Date");
+
+var posts = baseQuery.Clone().From("Posts");
+var authors = baseQuery.Clone().From("Authors").Limit(100); // override the limit value
+var sites = baseQuery.Clone().From("Sites");
+```
+
 ## Engine specific queries
 
 SqlKata allows you to tune your queries against specific engines by using the `ForXXX` methods.
 
 This is helpful when you want to apply some native functions, that are available in some vendors and not in others.
+
+
 
 ### Casting Example
 
@@ -88,18 +136,3 @@ SELECT dates::date as date FROM generate_series ( '2017-08-23'::timestamp, '2017
 ```
 
 Off course you can use any method you want inside these lambdas
-
-
-## Clone
-
-`Query`s instances are mutable, this means that modifying the copied query will also change the original query.
-
-To make a real clone of the query instance, you should use the `Clone` method.
-
-```cs
-var baseQuery = new Query().Select("Id", "Name").Limit(10).OrderBy("Date");
-
-var posts = baseQuery.Clone().From("Posts");
-var authors = baseQuery.Clone().From("Authors").Limit(100); // override the limit value
-var sites = baseQuery.Clone().From("Sites");
-```
