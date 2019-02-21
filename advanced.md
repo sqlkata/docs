@@ -30,7 +30,7 @@ else
 }
 ```
 
-Off course you can use to build any part of the query.
+Off course you can use it to build any part of the query.
 
 ## Clone
 
