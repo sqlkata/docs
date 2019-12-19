@@ -41,7 +41,7 @@ SELECT * FROM "Posts" WHERE LOWER("Title") LIKE 'book'
 You can also add an optional escape clause to all of the LIKE queries using the escapeCharacter argument:
 
 ```cs
-new Query("Posts").WhereLike("Title", @"%The \% Sign%", escapeCharacter="\")
+new Query("Posts").WhereLike("Title", @"%The \% Sign%", escapeCharacter=@"\")
 ```
 
 ```sql
