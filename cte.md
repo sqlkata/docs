@@ -1,7 +1,15 @@
 # Common Table Expression
-A common table expression (CTE) can be thought of as a temporary result set, it has some advantages over the sub query approach.
+A common table expression (CTE) can be thought of as a temporary result set
 
-In Sql, usually CTE is represented as a `with` clause.
+## Some notes about the CTE approach
+
+- CTE are easier to read
+Nested queries are hard to inspect, you have to undertand all the nested queries first, then go up to the main query, while in the CTE approach, the read process is more natural, from top to bottom.
+
+- Ability to overload existing tables
+You can overload existing tables this may help for testing purposes.
+
+In Sql, CTE is represented as a `with` clause.
 
 ## With
 To add a CTE to your query simply use the `With` method.
@@ -27,7 +35,7 @@ SELECT [Posts].*, [ActivePosts].[Count] FROM [Posts] INNER JOIN [ActivePosts] ON
 ```
 
 ## WithRaw
-You can use the `WithRaw` method if you want to pass an Sql Expression.
+You can use the `WithRaw` method if you want to pass a raw Sql Expression.
 
 ```cs
 var query = new Query("Posts")
