@@ -18,7 +18,6 @@ It uses parameter binding technique to protect your application against SQL inje
 
 In addition to protection against SQL injection attacks, this technique speeds up your query execution by letting the SQL engine caches and reuses the same query plan even if the parameters are changed.
 
-<img src="./images/pic.jpg">
 
 ```cs
 IEnumerable<Post> posts = await db.Query("Posts")
