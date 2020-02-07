@@ -76,7 +76,10 @@ Starting **v1.1.2**, you can use the Braces Expansions feature, to select multip
 //:playground
 new Query("Users")
     .Join("Profiles", "Profiles.UserId", "Users.Id")
-    .Select("Users.{Id, Name, LastName}", "Profiles.{GithubUrl, Website}")
+    .Select(
+        "Users.{Id, Name, LastName}",
+        "Profiles.{GithubUrl, Website, Stars}"
+    )
 ```
 
 Same as writing
@@ -85,10 +88,25 @@ Same as writing
 //:playground
 new Query("Users")
     .Join("Profiles", "Profiles.UserId", "Users.Id")
-    .Select("Users.Id", "Users.Name", "Users.LastName", "Profiles.GithubUrl", "Profiles.Website")
+    .Select(
+        "Users.Id",
+        "Users.Name",
+        "Users.LastName",
+        "Profiles.GithubUrl",
+        "Profiles.Website",
+        "Profiles.Stars"
+    )
 ```
 
 ```sql
-SELECT [Users].[Id], [Users].[Name], [Users].[LastName], [Profiles].[GithubUrl], [Profile].[Website] FROM [Users]
-    JOIN [Profiles] ON [Profiles.UserId] = [Users].[Id]
+SELECT
+  [Users].[Id],
+  [Users].[Name],
+  [Users].[LastName],
+  [Profiles].[GithubUrl],
+  [Profiles].[Website],
+  [Profiles].[Stars]
+FROM
+  [Users]
+  INNER JOIN [Profiles] ON [Profiles].[UserId] = [Users].[Id]
 ```
