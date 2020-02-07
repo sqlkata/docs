@@ -9,6 +9,7 @@ To override this behavior you can pass a boolean `true` to the last parameter `c
 
 
 ```cs
+//:playground
 new Query("Posts").WhereEnds("Title", "Book")
 ```
 

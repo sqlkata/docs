@@ -4,6 +4,7 @@
 Select a single or many columns
 
 ```cs
+//:playground
 new Query("Posts").Select("Id", "Title", "CreatedAt as Date");
 ```
 
@@ -17,9 +18,10 @@ SELECT [Id], [Title], [CreatedAt] AS [Date] FROM [Posts]
 Select from a sub query
 
 ```cs
-var countQuery = new Query("Comments").WhereColumns("Comments.PostId", "Posts.Id").AsCount();
+//:playground
+var countQuery = new Query("Comments").WhereColumns("Comments.PostId", "=", "Posts.Id").AsCount();
 
-new Query("Posts").Select("Id").Select(countQuery, "CommentsCount");
+var query = new Query("Posts").Select("Id").Select(countQuery, "CommentsCount");
 ```
 
 ```sql
@@ -30,6 +32,7 @@ SELECT [Id], (SELECT COUNT(*) AS [count] FROM [Comments] WHERE [Comments].[PostI
 Your friend when you need the full freedom
 
 ```cs
+//:playground
 new Query("Posts").Select("Id").SelectRaw("count(1) over(partition by AuthorId) as PostsByAuthor")
 ```
 
@@ -42,6 +45,7 @@ You can wrap your identifier inside `[` and `]` so they get recognized by SqlKat
 
 
 ```cs
+//:playground
 new Query("Posts").Select("Id").SelectRaw("count(1) over(partition by [AuthorId]) as [PostsByAuthor]")
 ```
 
@@ -69,6 +73,7 @@ SELECT `Id`, count(1) over(partition by `AuthorId`) as `PostsByAuthor` FROM `Pos
 Starting **v1.1.2**, you can use the Braces Expansions feature, to select multiple columns at the same time. This will allow you to write the same query in a more compact way.
 
 ```cs
+//:playground
 new Query("Users")
     .Join("Profiles", "Profiles.UserId", "Users.Id")
     .Select("Users.{Id, Name, LastName}", "Profiles.{GithubUrl, Website}")
@@ -77,6 +82,7 @@ new Query("Users")
 Same as writing
 
 ```cs
+//:playground
 new Query("Users")
     .Join("Profiles", "Profiles.UserId", "Users.Id")
     .Select("Users.Id", "Users.Name", "Users.LastName", "Profiles.GithubUrl", "Profiles.Website")

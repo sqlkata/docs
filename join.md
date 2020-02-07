@@ -5,6 +5,7 @@
 To apply an inner join use the `Join` method
 
 ```cs
+//:playground
 var query = new Query("Posts").Join("Authors", "Authors.Id", "Posts.AuthorId");
 ```
 
@@ -17,12 +18,14 @@ SELECT * FROM [Posts] INNER JOIN [Authors] ON [Authors].[Id] = [Posts].[AuthorId
 The 4th parameter is optional and default to `=`, pass any other operator to override the join operator.
 
 ```cs
+//:playground
 var query = new Query("Posts").Join("Comments", "Comments.Date", "Posts.Date", ">");
 ```
 
 ## Join with a Sub Query
 
 ```cs
+//:playground
 var topComments = new Query("Comments").OrderByDesc("Likes").Limit(10);
 
 var posts = new Query("Posts").LeftJoin(
@@ -44,7 +47,8 @@ SELECT * FROM [Posts] LEFT JOIN (
 In some advanced cases you may need to apply some constraints on the join clause.
 
 ```cs
-var comments = new Query("comments").LeftJoin("Posts", j => 
+//:playground
+var comments = new Query("comments").LeftJoin("Posts", j =>
     j.On("Posts.Id", "Comments.Id").WhereNotNull("Comments.AuthorId")
 );
 ```

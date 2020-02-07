@@ -3,6 +3,7 @@
 ## GroupBy
 
 ```cs
+//:playground
 var query = new Query("Comments")
                 .Select("PostId")
                 .SelectRaw("count(1) as count")
@@ -16,6 +17,7 @@ SELECT [PostId], count(1) as count FROM [Comments] GROUP BY [PostId]
 ## GroupByRaw
 
 ```cs
+//:playground
 var query = new Query("Companies")
     .Select("Profit")
     .SelectRaw("COUNT(*) as count")

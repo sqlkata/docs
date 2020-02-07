@@ -15,6 +15,7 @@ In Sql, CTE is represented as a `with` clause.
 To add a CTE to your query simply use the `With` method.
 
 ```cs
+//:playground
 var activePosts = new Query("Comments")
     .Select("PostId")
     .SelectRaw("count(1) as Count")
@@ -38,6 +39,7 @@ SELECT [Posts].*, [ActivePosts].[Count] FROM [Posts] INNER JOIN [ActivePosts] ON
 You can use the `WithRaw` method if you want to pass a raw Sql Expression.
 
 ```cs
+//:playground
 var query = new Query("Posts")
     .WithRaw("ActivePosts", "select PostId, count(1) as count from Comments having count(1) > ?", new [] {50}) // now you can consider ActivePosts as a regular table in the database
     .Join("ActivePosts", "ActivePosts.PostId", "Posts.Id")

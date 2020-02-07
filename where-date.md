@@ -57,6 +57,7 @@ SELECT * FROM `Posts` WHERE TIME(`CreatedAt`) > '16:30'
 For example to get the posts created in the first of February.
 
 ```cs
+//:playground
 new Query("Posts").WhereDatePart("day", "CreatedAt", 1).WhereDatePart("month", "CreatedAt", 2);
 ```
 

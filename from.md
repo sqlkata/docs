@@ -4,12 +4,14 @@
 The `Query` constructor takes an optional parameter to set the `from` clause
 
 ```cs
+//:playground
 new Query("Posts");
 ```
 
 Or you can use the `From` method to set it
 
 ```cs
+//:playground
 new Query().From("Posts");
 ```
 
@@ -21,6 +23,7 @@ SELECT * FROM [Posts]
 To alias the table you should use the `as` syntax
 
 ```cs
+//:playground
 new Query("Posts as p")
 ```
 
@@ -33,6 +36,7 @@ SELECT * FROM [Posts] AS [p]
 You can select from a sub query by passing a `Query` instance to the `From` method or you can use the `Lambda` function overload.
 
 ```cs
+//:playground
 var fewMonthsAgo = DateTime.UtcNow.AddMonths(-6);
 var oldPostsQuery = new Query("Posts").Where("Date", "<", fewMonthsAgo).As("old");
 
@@ -47,6 +51,7 @@ SELECT * FROM (SELECT * FROM [Posts] WHERE [Date] < '2017-06-01 6:31:26') AS [ol
 You can rewrite the same query by using the `Lambda` function overload
 
 ```cs
+//:playground
 new Query().From(q =>
     q.From("Posts").Where("Date", "<", fewMonthsAgo).As("old")
 ).OrderByDesc("Date");

@@ -9,6 +9,7 @@ the above methods accept either an instance of `Query` or a labmda expression
 
 
 ```cs
+//:playground
 var phones = new Query("Phones");
 var laptops = new Query("Laptops");
 
@@ -23,6 +24,7 @@ var mobiles = laptops.Union(phones);
 Or by using the labmda overload
 
 ```cs
+//:playground
 var mobiles = new Query("Laptops").ExceptAll(q => q.From("OldLaptops"));
 ```
 
@@ -35,6 +37,7 @@ var mobiles = new Query("Laptops").ExceptAll(q => q.From("OldLaptops"));
 You can always use the `CombineRaw` method to append raw expressions
 
 ```cs
+//:playground
 var mobiles = new Query("Laptops").CombineRaw("union all select * from OldLaptops");
 ```
 
@@ -46,6 +49,7 @@ Off course you can use the table identifier characters `[` and `]` to instruct S
 
 
 ```cs
+//:playground
 var mobiles = new Query("Laptops").CombineRaw("union all select * from [OldLaptops]");
 ```
 

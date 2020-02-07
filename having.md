@@ -3,6 +3,7 @@
 ## Having
 
 ```cs
+//:playground
 var commentsCount = new Query("Comments").Select("PostId").SelectRaw("count(1) as Count").GroupBy("PostId");
 
 var query = new Query().From(commentsCount).Having("Count", ">", 100);
@@ -17,6 +18,7 @@ SELECT * FROM (SELECT [PostId], count(1) as Count FROM [Comments] GROUP BY [Post
 ## HavingRaw
 
 ```cs
+//:playground
 var query = new Query("Comments").Select("PostId").SelectRaw("count(1) as Count").GroupBy("PostId").HavingRaw("count(1) > 50");
 ```
 

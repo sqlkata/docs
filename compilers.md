@@ -10,6 +10,7 @@ Currently, SqlKata query builder supports natively the following compilers **Sql
 Theoretically the output of different compilers should be similar, this is true for the 80% of the cases, however in some edge cases the output can be very different, for instance take a look how the `Limit` and `Offset` clause get compiled in each compiler
 
 ```cs
+//:playground
 new Query("Posts").Limit(10).Offset(20);
 ```
 

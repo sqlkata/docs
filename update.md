@@ -4,6 +4,7 @@
 
 ## Insert
 ```cs
+//:playground
 var query = new Query("Books").AsInsert(new {
     Title = "Toyota Kata",
     CreatedAt = new DateTime(2009, 8, 4),
@@ -23,6 +24,7 @@ INSERT INTO [Books] ([Name], [CreatedAt], [Author]) VALUES ('Toyota Kata', '2009
 you can use the insert many overload to insert multiple records
 
 ```cs
+//:playground
 var cols = new [] {"Name", "Price"};
 
 var data = new [] {
@@ -44,6 +46,7 @@ INSERT INTO [Products] ([Name], [Price]) VALUES ("A", 1000), ("B", 2000), ("C", 
 You can also insert records for the result of another Select Query.
 
 ```cs
+//:playground
 var cols = new [] { "Id", "Name", "Address" };
 new Query("ActiveUsers").AsInsert(cols, new Query("Users").Where("Active", 1));
 ```
@@ -55,6 +58,7 @@ INSERT INTO [ActiveUsers] ([Id], [Name], [Address]) SELECT * FROM [Users] WHERE 
 ## Update
 
 ```cs
+//:playground
 var query = new Query("Posts").WhereNull("AuthorId").AsUpdate(new {
     AuthorId = 10
 });
@@ -67,6 +71,7 @@ UPDATE [Posts] SET [AuthorId] = 10 WHERE [AuthorId] IS NULL
 ## Delete
 
 ```cs
+//:playground
 var query = new Query("Posts").Where("Date", ">", DateTime.UtcNow.AddDays(-30)).AsDelete();
 ```
 

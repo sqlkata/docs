@@ -5,7 +5,10 @@
 Sometimes you need to do some actions only when certain conditions are met, in these cases you can use the `When(condition, whenTrue, whenFalse = null)` method.
 
 ```cs
+//:playground
 var query = db.Query("Transactions");
+
+var amount = 100;
 
 query.When(
     amount > 0,
@@ -18,6 +21,7 @@ query.When(
 is the same as
 
 ```cs
+//:playground
 var query = db.Query("Transactions");
 
 if(amount > 0)
@@ -57,6 +61,7 @@ This is helpful when you want to apply some native functions, that are available
 ### Casting Example
 
 ```cs
+//:playground
 var query = new Query("Posts")
     .Select("Id", "Title")
     .ForPostgres(q => q.SelectRaw("[Date]::date"))
@@ -87,13 +92,14 @@ Another example is to generate a date series between two given dates, you can us
 
 
 ```cs
+//:playground
 var now = DateTime.UtcNow;
 var format = "yyyy-MM-dd";
 
 DateTime from = now.AddDays(-5).ToString(format),
          now.ToString(format);
 
-var rangeQuery = new Query()
+var query = new Query()
 
 .ForPostgres(q =>
 

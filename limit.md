@@ -3,6 +3,7 @@
 `Limit` and `Offset` allows you to limit the number of results returned from the database, this method is highly correlated with the `OrderBy` and `OrderByDesc` methods.
 
 ```cs
+//:playground
 var latestPosts = new Query("Posts").OrderByDesc("Date").Limit(10)
 ```
 
@@ -27,6 +28,7 @@ SELECT * FROM `Posts` ORDER BY `Date` DESC LIMIT 10
 if you want to skip some records, use the `Offset` method.
 
 ```cs
+//:playground
 var latestPosts = new Query("Posts").OrderByDesc("Date").Limit(10).Offset(5);
 ```
 
@@ -55,6 +57,7 @@ SELECT * FROM `Posts` ORDER BY `Date` DESC LIMIT 10 OFFSET 5
 You can use the `ForPage` method to easily paginate your data.
 
 ```cs
+//:playground
 var posts = new Query("Posts").OrderByDesc("Date").ForPage(2);
 ```
 
@@ -64,6 +67,7 @@ By default this method will return `15` rows per page, you can override this val
 
 
 ```cs
+//:playground
 var posts = new Query("Posts").OrderByDesc("Date").ForPage(3, 50);
 ```
 

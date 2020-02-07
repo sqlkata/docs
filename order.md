@@ -3,6 +3,7 @@
 ## OrderBy
 
 ```cs
+//:playground
 var query = new Query("Comments").OrderBy("Date").OrderByDesc("Name");
 ```
 
@@ -15,6 +16,7 @@ SELECT * FROM [Comments] ORDER BY [Date], [Name] DESC
 ## OrderByRaw
 
 ```cs
+//:playground
 var query = new Query("Comments").OrderByRaw("[Likes] DESC NULLS LAST")
 ```
 
