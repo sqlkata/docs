@@ -54,7 +54,7 @@ db.Query("Users").WhereFalse("IsActive").OrWhereNull("LastActivityDate");
 ```
 
 ```sql
-SELECT * FROM [Users] WHERE [IsActive] = 0 AND [LastActivityDate] IS NULL
+SELECT * FROM [Users] WHERE [IsActive] = 0 OR [LastActivityDate] IS NULL
 ```
 
 > **Note:** the above methods will put the values literally in the generated sql and do not use parameter bindings techniques.
