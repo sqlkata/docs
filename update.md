@@ -13,7 +13,7 @@ var query = new Query("Books").AsInsert(new {
 ```
 
 ```sql
-INSERT INTO [Books] ([Name], [CreatedAt], [Author]) VALUES ('Toyota Kata', '2009-08-04 00:00:00', 'Mike Rother')
+INSERT INTO [Books] ([Title], [CreatedAt], [Author]) VALUES ('Toyota Kata', '2009-08-04 00:00:00', 'Mike Rother')
 ```
 
 
