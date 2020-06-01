@@ -13,7 +13,7 @@ var amount = 100;
 query.When(
     amount > 0,
     q => q.Select("Debit as Amount"),
-    q => q.Select("Credit as Amount"),
+    q => q.Select("Credit as Amount")
 )
 
 ```
