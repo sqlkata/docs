@@ -62,9 +62,11 @@ This is helpful when you want to apply some native functions, that are available
 
 ```cs
 //:playground
+using SqlKata.Extensions;
+
 var query = new Query("Posts")
     .Select("Id", "Title")
-    .ForPostgres(q => q.SelectRaw("[Date]::date"))
+    .ForPostgreSql(q => q.SelectRaw("[Date]::date"))
     .ForSqlServer(q => q.SelectRaw("CAST([Date] as DATE)"));
 ```
 
@@ -93,6 +95,8 @@ Another example is to generate a date series between two given dates, you can us
 
 ```cs
 //:playground
+using SqlKata.Extensions;
+
 var now = DateTime.UtcNow;
 var format = "yyyy-MM-dd";
 
@@ -101,7 +105,7 @@ DateTime from = now.AddDays(-5).ToString(format),
 
 var query = new Query()
 
-.ForPostgres(q =>
+.ForPostgreSql(q =>
 
     // everything written here is available to the Postgre Compiler only
     q.FromRaw("generate_series ( ?::timestamp, ?::timestamp, '1 day'::interval) dates", new[] { from, to })
