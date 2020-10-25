@@ -4,7 +4,8 @@
 
 ```cs
 //:playground
-var latestPosts = new Query("Posts").OrderByDesc("Date").Limit(10)
+// latest posts
+var query = new Query("Posts").OrderByDesc("Date").Limit(10)
 ```
 
 In Sql Server
@@ -29,7 +30,8 @@ if you want to skip some records, use the `Offset` method.
 
 ```cs
 //:playground
-var latestPosts = new Query("Posts").OrderByDesc("Date").Limit(10).Offset(5);
+// latest posts
+var query = new Query("Posts").OrderByDesc("Date").Limit(10).Offset(5);
 ```
 
 In Sql Server
