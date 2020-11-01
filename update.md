@@ -17,7 +17,7 @@ INSERT INTO [Books] ([Title], [CreatedAt], [Author]) VALUES ('Toyota Kata', '200
 ```
 
 
-> **Note: ** While executing the query you can get the inserted **id** using the `InsertGetId()` method
+> **Note: ** While executing the query you can get the inserted **id** using the `AsInsert(data, returnId: true)` method
 
 
 ### Insert Many
