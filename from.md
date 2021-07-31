@@ -40,23 +40,13 @@ You can select from a sub query by passing a `Query` instance to the `From` meth
 var fewMonthsAgo = DateTime.UtcNow.AddMonths(-6);
 var oldPostsQuery = new Query("Posts").Where("Date", "<", fewMonthsAgo).As("old");
 
-new Query().From(oldPostsQuery).OrderByDesc("Date");
+var query = new Query().From(oldPostsQuery).OrderByDesc("Date");
 ```
 
 
 ```sql
 SELECT * FROM (SELECT * FROM [Posts] WHERE [Date] < '2017-06-01 6:31:26') AS [old] ORDER BY [Date] DESC
 ```
-
-You can rewrite the same query by using the `Lambda` function overload
-
-```cs
-//:playground
-new Query().From(q =>
-    q.From("Posts").Where("Date", "<", fewMonthsAgo).As("old")
-).OrderByDesc("Date");
-```
-
 
 ## From a Raw expression
 
