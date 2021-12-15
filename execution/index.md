@@ -23,8 +23,8 @@ dotnet add package Npgsql
 
 ### MySql
 
-For MySql install [MySql.Data](https://www.nuget.org/packages/MySql.Data/8.0.9-dmr) package
+For MySql install [MySql.Data](https://www.nuget.org/packages/MySql.Data) package
 
 ```sh
-dotnet add package MySql.Data --version 8.0.9-dmr
+dotnet add package MySql.Data
 ```
