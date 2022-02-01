@@ -9,7 +9,7 @@ In order to execute the queries, you have to create instances of `XQuery`, that 
 > **Note: ** `XQuery` extends the `Query` class and support all methods supported by the later
 
 ```cs
-var connection = new MySqlConnection(
+using var connection = new MySqlConnection(
     "Host=localhost;Port=3306;User=user;Password=secret;Database=Users;SslMode=None"
 );
 
@@ -30,11 +30,11 @@ As it's name imply, it helps in creating Executable Queries (`XQuery`) instances
 
 ```cs
 
-var connection = new MySqlConnection(
+using var connection = new MySqlConnection(
     "Host=localhost;Port=3306;User=user;Password=secret;Database=Users;SslMode=None"
 );
 
-var db = new QueryFactory(connection, new MySqlCompiler());
+using var db = new QueryFactory(connection, new MySqlCompiler());
 
 // From now on, you can use the `db.Query()` method
 var users = db.Query().From("Users").Get();
