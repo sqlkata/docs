@@ -66,6 +66,23 @@ services.Add<QueryFactory>(() => {
 });
 ```
 
+For .NET 6
+
+```cs
+builder.Services.AddTransient<QueryFactory>((e) =>
+{
+    
+    var connection = new MySqlConnection(
+        "Host=localhost;Port=3306;User=user;Password=secret;Database=Users;SslMode=None"
+    );
+
+    var compiler = new MySqlServerCompiler();
+
+    return new QueryFactory(connection, compiler);
+
+});
+```
+
 and in the `HomeController.cs`
 
 ```cs
