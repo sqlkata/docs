@@ -76,7 +76,7 @@ builder.Services.AddTransient<QueryFactory>((e) =>
         "Host=localhost;Port=3306;User=user;Password=secret;Database=Users;SslMode=None"
     );
 
-    var compiler = new MySqlServerCompiler();
+    var compiler = new MySqlCompiler();
 
     return new QueryFactory(connection, compiler);
 
