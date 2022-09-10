@@ -28,3 +28,43 @@ For MySql install [MySql.Data](https://www.nuget.org/packages/MySql.Data) packag
 ```sh
 dotnet add package MySql.Data
 ```
+
+```cs
+var host = "local";
+var user = "sa";
+var database = "healthnbeautyapp";
+var password = "secret";
+
+var cs = $"server={host};user={user};database={dbName};password={password}";
+
+var connection = new MySqlConnection(cs);
+
+var db = new QueryFactory(connection, new MySqlCompiler());
+```
+
+### SQLite
+
+For SQLite install `System.Data.SQLite.Core` package
+
+```sh
+dotnet add package System.Data.SQLite.Core
+```
+
+
+```cs
+var cs = $"Data Source=file:mydatabase.db";
+
+var connection = new SqliteConnection(cs);
+
+var db = new QueryFactory(connection, new SqliteCompiler());
+```
+
+or if you want to use in-memory database for testing purposes
+
+```cs
+var cs = $"Data Source=file::memory:;Cache=Shared";
+
+var connection = new SqliteConnection(cs);
+
+var db = new QueryFactory(connection, new SqliteCompiler());
+```
