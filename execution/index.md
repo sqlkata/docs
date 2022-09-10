@@ -50,6 +50,8 @@ For SQLite install `System.Data.SQLite.Core` package
 dotnet add package System.Data.SQLite.Core
 ```
 
+check this link for more information about the SQLite ADO provider https://docs.microsoft.com/en-us/dotnet/standard/data/sqlite/?tabs=netcore-cli
+
 
 ```cs
 var cs = $"Data Source=file:mydatabase.db";
